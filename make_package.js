@@ -12,13 +12,15 @@ module.exports = {
             prefs: "assets/prefs.png",
             main: "main.js",
             license: "UNLICENSED",
-            description:"描述？那是啥？ —— 使用脚手架生成的插件",
+            description: "描述？那是啥？ —— 使用脚手架生成的插件",
             author: {
                 name: Author
             },
             homepage: "",
             keywords: ["Dora.js"],
-            engines: `>=${FarmeworkVersion}`,
+            engines: {
+                dora: `>=${FarmeworkVersion}`
+            },
             contributes: {
                 search: null
             },
