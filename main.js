@@ -52,8 +52,9 @@ inquirer.prompt([
     const fileRoot = path.join(process.cwd(), global.data.Package_Name || global.data.Addon_Name);
     fs.mkdirSync(fileRoot)
     fs.writeFileSync(path.join(fileRoot, "package.json"), require("./make_package").create());
-    fs.writeFileSync(path.join(fileRoot, ".gitignore"), require("./make_gitignore").data);
-    fs.writeFileSync(path.join(fileRoot, "main.js"),)
+    fs.writeFileSync(path.join(fileRoot, ".gitignore"), require("./make_gitignore").create());
+    fs.writeFileSync(path.join(fileRoot, "main.js"),require("./make_main").create());
+    
 }).catch(error => {
     console.error("出错了……")
     console.log(error)
