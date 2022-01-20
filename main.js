@@ -51,10 +51,14 @@ inquirer.prompt([
     global.data.JSLibs = global.data.JSLibs.join(";").split(/;?axios;?/).join("").split(";")
     const fileRoot = path.join(process.cwd(), global.data.Package_Name || global.data.Addon_Name);
     fs.mkdirSync(fileRoot)
-    fs.writeFileSync(path.join(fileRoot, "package.json"), require("./make_package").create());
-    fs.writeFileSync(path.join(fileRoot, ".gitignore"), require("./make_gitignore").create());
-    fs.writeFileSync(path.join(fileRoot, "main.js"),require("./make_main").create());
-    
+    fs.writeFileSync(path.join(fileRoot, "package.json"), require("./make_package").create(global.data),'utf8');
+    fs.writeFileSync(path.join(fileRoot, ".gitignore"), require("./make_gitignore").create(),'utf8');
+    fs.writeFileSync(path.join(fileRoot, "main.js"),require("./make_main").create(global.data),'utf8');
+    fs.mkdirSync(path.join(fileRoot,"components"))
+    fs.copyFileSync(path.join(__dirname,"make_index.js"),path.join(fileRoot,"components","index.js"))
+    fs.mkdirSync(path.join(fileRoot,"assets"))
+    fs.copyFileSync(path.join(__dirname,"icon.png"),path.join(fileRoot,"assets","icon.png"))
+    fs.writeFileSync(path.join(fileRoot,"assets" ,"prefs.json"),"{}");
 }).catch(error => {
     console.error("出错了……")
     console.log(error)
